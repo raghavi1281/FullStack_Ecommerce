@@ -1,0 +1,42 @@
+<div class="row justify-content-center">
+    <form class="m-3 p-3 border rounder shadow col-11 col-md-9 col-lg-6" (ngSubmit)="registerUser()" [formGroup]="signUpForm">
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput1" formControlName="name" placeholder="Full Name">
+            <label for="floatingInput1">Name</label>
+            <div class="err" *ngIf="name?.invalid && (name?.dirty || name?.touched)"> <!--  this.signUpForm.get('name')?.invalid  -->
+                <div *ngIf="name?.errors?.['required']">Name is Required</div>
+            </div>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput2" formControlName="email" placeholder="name@example.com">
+            <label for="floatingInput2">Email address</label>
+            <div class="err" *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+                <div *ngIf="email?.errors?.['required']">Email is Required</div>
+                <div *ngIf="email?.errors?.['email']">Invalid email format</div>
+            </div>
+        </div>
+        
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="floatingPassword1" formControlName="password" placeholder="Abcd@1234">
+            <label for="floatingPassword1">Password</label>
+            <div class="err" *ngIf="password?.invalid && (password?.dirty || password?.touched)">
+                <div *ngIf="password?.errors?.['required']">password is Required</div>
+                <div *ngIf="password?.errors?.['minlength']">Give a minimum of 8 characters</div>
+                <div *ngIf="password?.errors?.['pattern']">Invalid password pattern</div>
+            </div>
+        </div>
+        
+        <div class="form-floating">
+            <input type="password" class="form-control" id="floatingPassword2" formControlName="confirmPassword" placeholder="Abcd@1234">
+            <label for="floatingPassword2">Confirm Password</label>
+            <div class="err" *ngIf="confirmPassword?.invalid && (confirmPassword?.dirty || confirmPassword?.touched)">
+                <div *ngIf="signUpForm.hasError('passwordMismatch')">Passwords do not match</div>
+                <div *ngIf="confirmPassword?.errors?.['required']">Confirm Password is Required</div>
+            </div>
+        </div>
+        
+        <button class="btn btn-dark my-2" type="submit" [disabled]="signUpForm.invalid">Sign Up</button>
+        <a class="ms-4" routerLink="/login">Existing User? Login here!</a>
+    </form>
+    
+</div>
