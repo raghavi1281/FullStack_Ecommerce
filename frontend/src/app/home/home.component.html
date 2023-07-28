@@ -1,0 +1,48 @@
+<nav class="navbar navbar-light">
+    <div class="container-fluid">
+      <a class="screen navbar-brand" routerLink="../Home">
+        Home
+      </a>
+      <form class="d-flex justify-content-center" #SearchForm="ngForm" (submit)="onSearch()">
+        <input class="f-input form-control" type="text" [(ngModel)]="searchQuery" name="searchQuery" placeholder="Search" aria-label="Search" required>
+        <button class="f-button btn btn-light" type="submit" [disabled]="SearchForm.invalid">
+          <i class="bi bi-search" style="font-size: 1rem;"></i>
+        </button>
+      </form>
+      <div>
+        <a class="screen" routerLink="../Cart">
+          <span class="position-relative me-4">
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill">{{cartCount}}</span>
+            <i class="bi bi-cart me-2" ></i>
+          </span>  
+        </a>
+        <!-- <a href="#"><i class="bi bi-person bg-light rounded-pill" style="color:#004533; font-size: 1.5rem;"></i></a> -->
+        <a routerLink="../Profile">
+          <i *ngIf="isLoggedIn; else elseblock" class="bi bi-person bg-light rounded-circle px-1" style="color:#004533; font-size: 1.5rem;"></i>
+          <ng-template #elseblock>
+            <i class="bi bi-person-exclamation bg-light rounded-circle px-1" style="color:#004533; font-size: 1.5rem;"></i> 
+          </ng-template>
+          <!-- <i class="bi bi-person-exclamation bg-light rounded-circle px-1" style="color:#004533; font-size: 1.5rem;"></i> -->
+        </a>
+         
+      </div>
+      
+    </div>
+  </nav>
+  
+  <!-- <router-outlet></router-outlet>
+  <div class="mobile btn-group" role="group" aria-label="Basic radio toggle button group">
+    <button class="nav-btn btn btn-outline-dark" routerLink="home"><i class="bi bi-house"></i></button>
+    <button class="nav-btn btn btn-outline-dark"><i class="bi bi-funnel"></i></button>
+    <button class="nav-btn btn btn-outline-dark" routerLink="cart">
+      <span class="position-relative">
+        <span class="position-absolute top-0 translate-middle badge rounded-pill bg-dark" style="font-size: 0.5rem; left: 50% !important;">{{cartCount}}</span>
+        <i class="bi bi-cart me-2"></i>
+      </span> 
+    </button>
+    <div>
+  
+    </div>
+    <button class="nav-btn btn btn-outline-dark"><i class="bi bi-person-exclamation"></i><i class="bi bi-person"></i></button>
+  </div> -->
+<router-outlet></router-outlet>

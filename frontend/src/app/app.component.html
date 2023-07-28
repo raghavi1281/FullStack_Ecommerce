@@ -1,0 +1,10 @@
+<nav class="bar">
+  <a class="screen navbar-brand" routerLink="Home">
+    The<i class="bi-box"></i>Company
+  </a>
+</nav>
+
+<button class="logout" *ngIf="isLoggedIn">
+  <i class="bi bi-power" (click)="logout()"></i>
+</button>
+<router-outlet></router-outlet>

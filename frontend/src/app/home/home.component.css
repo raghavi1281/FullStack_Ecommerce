@@ -1,0 +1,27 @@
+.navbar{
+    background-color: var(--third-color);
+}
+
+.f-input{
+    border: none;
+    border-radius: 0%;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+
+.f-button{
+    background-color: white;
+    border: none;
+    border-radius: 0%;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+.bi-cart{
+    color: var(--primary-color);
+}
+
+.badge{
+    background-color: var(--primary-color);
+    color: (--forth-color);
+}
