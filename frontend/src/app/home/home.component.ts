@@ -13,6 +13,8 @@ export class HomeComponent {
   title = 'Ecommerce_frontend'
   searchQuery: string = ''
   isLoggedIn: boolean = false
+  AuthMessage: string = ''
+  successMessageSignal: boolean = false
   cartCount: number = 0
 
   private authSubcription: Subscription
@@ -24,16 +26,30 @@ export class HomeComponent {
               ){
     this.authSubcription = this.auth.auth$.subscribe((isLoggedIn) => this.isLoggedIn = isLoggedIn)
     this.cartSubscription = this.cartService.cart$.subscribe((count) => this.cartCount = count)
+
+    if(this.auth.loggedINNow)
+    {
+      this.auth.loggedINNow = false
+      this.onLoginSuccess()
+    }
     // this.cartCount = this.cartService.getTotalItemsCount()
   }
 
 
-  onSearch() {
+  onSearch() : void{
     this.searchService.setSearchQuery(this.searchQuery)
     this.searchQuery = ''
   }
 
-  onSelectCategory(option: string){
+  onSelectCategory(option: string) : void{
     this.searchService.setCategoryFilter(option)
+  }
+
+  onLoginSuccess() : void {
+    this.successMessageSignal = true
+    this.AuthMessage = "You are Logged in Successfully"
+    setTimeout(() => {
+      this.successMessageSignal = false
+    }, 3000)
   }
 }

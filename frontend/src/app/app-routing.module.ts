@@ -6,17 +6,20 @@ import { SignupComponent } from './Auth/signup/signup.component';
 import { AuthGuard } from './auth.guard';
 import { CartHeaderComponent } from './cart/cart-header.component';
 import { ProfileComponent } from './profile/profile.component';
+import { OfflineComponent } from './offline/offline.component';
 
 const routes: Routes = [
   {path: '', redirectTo:'Home', pathMatch:'full'},
   {path: 'login', component: LoginComponent, canActivate: [() => inject(AuthGuard).canCheckAuth()]},
   {path: 'signup', component: SignupComponent, canActivate: [() => inject(AuthGuard).canCheckAuth()]},
-  {path: 'Home', component: HomeComponent, 
+  {path: 'Home', component: HomeComponent,
                   loadChildren: () => import('./home/home.module').then(m=>m.HomeModule)},
   {path:'Cart', component:CartHeaderComponent, canActivate: [() => inject(AuthGuard).canActivate()],
                 loadChildren: () => import('./cart/cart.module').then(m=>m.CartModule)},
   {path:'Profile', component:ProfileComponent, canActivate: [() => inject(AuthGuard).canActivate()],
                 loadChildren: () => import('./profile/profile.module').then(m=>m.ProfileModule)},
+  {path: 'offline', component:OfflineComponent},
+  {path:'**', redirectTo:'Home', pathMatch:'full'}
 ];
 
 @NgModule({

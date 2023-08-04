@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/Models/product.model';
+import { productsResponse } from 'src/app/Models/response.model';
 import { ProductsService } from 'src/app/Services/products.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { ProductsService } from 'src/app/Services/products.service';
   styleUrls: ['./all-products.component.css']
 })
 export class AllProductsComponent implements OnInit{
-  products: Product[] = []
+  products: productsResponse[] = []
 
   constructor(private service: ProductsService) {}
 

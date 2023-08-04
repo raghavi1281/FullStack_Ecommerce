@@ -3,8 +3,7 @@
     The<i class="bi-box"></i>Company
   </a>
 </nav>
-
-<button class="logout" *ngIf="isLoggedIn">
+<button class="logout" title="LogOut" *ngIf="isLoggedIn">
   <i class="bi bi-power" (click)="logout()"></i>
 </button>
 <router-outlet></router-outlet>

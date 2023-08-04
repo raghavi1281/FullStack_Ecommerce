@@ -1,0 +1,6 @@
+.card-imag{
+    height: 95vh;
+    width: 100vw;
+    object-fit:scale-down; 
+    object-position:center;
+}

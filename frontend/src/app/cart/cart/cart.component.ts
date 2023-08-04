@@ -20,7 +20,7 @@ export class CartComponent {
     this.totalPrice = this.cartService.getTotalCost()
   }
 
-  onCheckOut() {
+  onCheckOut() : void{
     this.cartService.checkOut()
   }
 }

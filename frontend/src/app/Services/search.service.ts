@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Product } from '../Models/product.model';
+import { productsResponse } from '../Models/response.model';
 import { Router } from '@angular/router';
 
 
@@ -29,8 +30,8 @@ export class SearchService {
     this.searchSubject.next(query)
   }
 
-  getProductsBySearch(query: string): Observable<Product[]>{
-    return this.http.get<Product[]>('http://localhost:3000/filter/bySearch/'+query);
+  getProductsBySearch(query: string): Observable<productsResponse[]>{
+    return this.http.get<productsResponse[]>('http://localhost:3000/filter/bySearch/'+query);
   }
 
   getProductsByCategory(category: string): Observable<Product[]>{

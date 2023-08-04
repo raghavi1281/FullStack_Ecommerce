@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Product } from 'src/app/Models/product.model';
+import { productsResponse } from 'src/app/Models/response.model';
 
 @Component({
   selector: 'app-product-list',
@@ -7,7 +8,7 @@ import { Product } from 'src/app/Models/product.model';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent {
-  @Input() products: Array<Product> = [];
+  @Input() products: Array<productsResponse> = [];
 
   constructor() {}
 }

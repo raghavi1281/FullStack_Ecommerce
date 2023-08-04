@@ -30,7 +30,7 @@ export class ProductComponent {
     })
  }
 
- addToCart(product: Product){
+ addToCart(product: Product) : void{
   this.cart.addToCart(product)
  }
 

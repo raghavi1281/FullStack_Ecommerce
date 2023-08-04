@@ -3,9 +3,9 @@
       <a class="screen navbar-brand" routerLink="../Home">
         Home
       </a>
-      <form class="d-flex justify-content-center" #SearchForm="ngForm" (submit)="onSearch()">
+      <form class="d-flex col col-sm-5 justify-content-center" #SearchForm="ngForm" (submit)="onSearch()">
         <input class="f-input form-control" type="text" [(ngModel)]="searchQuery" name="searchQuery" placeholder="Search" aria-label="Search" required>
-        <button class="f-button btn btn-light" type="submit" [disabled]="SearchForm.invalid">
+        <button class="f-button btn btn-light" type="submit" title="Search" [disabled]="SearchForm.invalid">
           <i class="bi bi-search" style="font-size: 1rem;"></i>
         </button>
       </form>
@@ -46,3 +46,4 @@
     <button class="nav-btn btn btn-outline-dark"><i class="bi bi-person-exclamation"></i><i class="bi bi-person"></i></button>
   </div> -->
 <router-outlet></router-outlet>
+<div class="loginSuccessMessage" *ngIf="successMessageSignal">{{AuthMessage}}</div>

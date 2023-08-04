@@ -25,3 +25,25 @@
     background-color: var(--primary-color);
     color: (--forth-color);
 }
+
+.loginSuccessMessage{
+    position: fixed;
+    top: 50px;
+    right: 20px;
+    background-color: #3bab64;
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    animation: slide-up 0.5s ease-out;
+}
+
+@keyframes slide-up {
+    0%{
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

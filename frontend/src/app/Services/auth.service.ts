@@ -9,13 +9,14 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  isLoggedIn: boolean = false;
+  isLoggedIn: boolean = false
+  loggedINNow: boolean = false
   private authSubject = new BehaviorSubject<boolean>(localStorage.getItem('token')? true : false)
   auth$ = this.authSubject.asObservable()
   constructor(private http: HttpClient, 
               private router: Router) { }
 
-  logIN(user: {email: string, password: string}){
+  logIN(user: {email: string, password: string}) : any {
     this.http.post<tokenInterface>('http://localhost:3000/user/login', user).subscribe({
       next: ((response) => {
         this.authenticate(response)
@@ -30,7 +31,7 @@ export class AuthService {
     })
   }
 
-  signUP(user: {name: string, email: string, password: string}){
+  signUP(user: {name: string, email: string, password: string}) : any{
     this.http.post<tokenInterface>('http://localhost:3000/user/signup', user).subscribe({
       next: ((response) => {
         this.authenticate(response)
@@ -45,16 +46,19 @@ export class AuthService {
     })
   }
 
-  authenticate(response: tokenInterface){
+  authenticate(response: tokenInterface) : any{
       this.authSubject.next(true)
+      //this.home.onLoginSuccess("You have logged in Successfully")
+      this.loggedINNow = true
       this.router.navigate(['/']);
+      
       localStorage.setItem("token", JSON.stringify(response.token));
-      console.log(response.token);
+      //console.log(response.token);
       return {isLoggedIn: this.isLoggedIn, message: "Authenticated" }
 
   }
 
-  logOUT(){
+  logOUT(): void{
     this.authSubject.next(false)
     this.isLoggedIn = false
     localStorage.removeItem('token')

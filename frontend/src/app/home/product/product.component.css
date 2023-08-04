@@ -1,0 +1,6 @@
+.d-block{
+    background-color: whitesmoke; 
+    height: 50vh; 
+    object-fit: scale-down; 
+    object-position: center;
+}

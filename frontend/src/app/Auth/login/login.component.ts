@@ -1,25 +1,28 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../Services/auth.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent{
 
 loginForm: FormGroup;
 
   constructor(private formBuilder : FormBuilder, 
-              private authService: AuthService) {
+              private authService: AuthService,
+              private router: Router) {
     this.loginForm = this.formBuilder.group({
       email : ['', [Validators.required, Validators.email]],
       password : ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%&*?])[a-zA-Z\d!@#$%&*?]{8,}$/)]],
     });
   }
 
-  loginUser(){
+
+  loginUser() : void{
     const user = {
       email: this.loginForm.get('email')?.value,
       password: this.loginForm.get('password')?.value

@@ -3,13 +3,14 @@ import { Product } from '../Models/product.model';
 import { Router } from '@angular/router';
 import { CheckOutService } from './check-out.service';
 import { BehaviorSubject } from 'rxjs';
+import { productsResponse } from '../Models/response.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
   cart: {
-    product: Product,
+    product: productsResponse,
     quantity: number
   }[]= []
   totalItems: number = 0
@@ -21,7 +22,7 @@ cart$ = this.cartItemsSubject.asObservable()
   constructor(private checkOutService: CheckOutService,
               private router: Router) { }
 
-  addToCart(product: Product){
+  addToCart(product: productsResponse):void{
     const i = this.cart.findIndex((p) => p.product._id === product._id)
     
     if(i !== -1){
@@ -36,7 +37,7 @@ cart$ = this.cartItemsSubject.asObservable()
     console.log(this.cart)
   }
 
-  removeFromCart(product: Product) {
+  removeFromCart(product: Product) : void{
     const index = this.cart.findIndex((p) => p.product._id === product._id)
     const q = this.cart.at(index)!.quantity
     this.totalItems = this.totalItems - q
@@ -44,44 +45,45 @@ cart$ = this.cartItemsSubject.asObservable()
     this.cart.splice(index, 1)
   }
 
-  increaseQuantity(product: Product){
+  increaseQuantity(product: Product):void{
     this.cart.find((p) => p.product._id === product._id)!.quantity++
     this.totalItems++
     this.cartItemsSubject.next(this.totalItems)
     this.totalCost += product.price
   }
 
-  decreaseQuantity(product: Product){
+  decreaseQuantity(product: Product):void{
     this.cart.find((p) => p.product._id === product._id)!.quantity--
     this.totalItems--
     this.cartItemsSubject.next(this.totalItems)
     this.totalCost -= product.price
   }
 
-  checkOut() {
+  checkOut():void{
     this.checkOutService.placeOrder(this.cart).subscribe({
       next:((response) => {
         this.cart = []
         this.totalCost = 0
         this.totalItems = 0
         this.cartItemsSubject.next(this.totalItems)
-        this.router.navigate(['Cart/checkout'])
+        //console.log(response.order._id)
+        this.router.navigate(['Cart/checkout'],{queryParams: {orderId : response.order._id}})
       }), error: ((error) => {
         alert("Unable to place order. try Again")
       })
     })
   }
 
-  getCart(){
+  getCart() : any{
     return this.cart
   }
 
-  getTotalItemsCount() {
+  getTotalItemsCount() : number {
     return this.totalItems
   }
 
-  getTotalCost() {
-    return this.totalCost
+  getTotalCost() : number{
+     return this.totalCost
   }
 
 }

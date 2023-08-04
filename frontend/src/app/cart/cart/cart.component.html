@@ -1,34 +1,41 @@
-<div *ngIf="cart.length > 0; else emptyCart" class="row">
-    <div class="col col-11 col-md-7">
+<div *ngIf="cart.length > 0; else emptyCart" class="row justify-content-center">
+    <div class="col col-11 col-md-6 m-2">
       <div *ngFor="let item of cart">
         <a style="padding: 0%; margin: 0%; text-decoration: none;" [routerLink]="['/product', item.product._id]">  
         <div class="col m-1">
               <div class="card h-100 shadow" style="position: relative; border-color: white;">
-                  <img src={{item.product.thumbnail}} class="card-img-top" alt="..." style="border-bottom: 1px solid rgb(201, 201, 201); background-color: whitesmoke; height: 200px; object-fit: scale-down; object-position: center;"> 
-                  <div class="card-body justify-content-between">
-                          <figure>
-                              <blockquote class="blockquote">
-                                <h6>{{item.product.title}}</h6>
-                              </blockquote>
-                              <figcaption class="blockquote-footer">
-                                <cite title="Source Title">{{item.product.brand}}</cite>
-                              </figcaption>
-                            </figure>
-                      <!-- <h5 class="card-title">{{item.product.title}}</h5>
-                      <footer class="fw-lighter">{{product.brand}}</footer> -->
-                      <div class="row justify-content-between align-items-center m-2">
-                          <p class="col align-item-center">Rs. {{item.product.price}}</p>
-                          <p>Quantity: {{item.quantity}}</p>
-                      </div>
+                <div class="row">
+                    <div class="col-4">
+                        <img src={{item.product.thumbnail}} class="img-fluid rounded-start" alt="..." style="border-bottom: 1px solid rgb(201, 201, 201); background-color: whitesmoke; height: 200px; object-fit: scale-down; object-position: center;"> 
+                    </div>
+                    <div class="col-8">
+                        <div class="card-body justify-content-between">
+                            <figure>
+                                <blockquote class="blockquote">
+                                  <h6>{{item.product.title}}</h6>
+                                </blockquote>
+                                <figcaption class="blockquote-footer">
+                                  <cite title="Source Title">{{item.product.brand}}</cite>
+                                </figcaption>
+                              </figure>
+                        <!-- <h5 class="card-title">{{item.product.title}}</h5>
+                        <footer class="fw-lighter">{{product.brand}}</footer> -->
+                        <div class="row justify-content-between align-items-center m-2">
+                            <p class="col align-item-center">{{item.product.price | currency: 'USD': 'symbol':'1.2-2'}}</p>
+                            <p>Quantity: {{item.quantity}}</p>
+                        </div>
+                    
+                    </div>
+                    </div>
+                </div>
                   
-                  </div>
               </div>
           </div>
         </a>  
       </div>  
     </div>
-    <div class="col col-11 col-md-3">
-      <p>{{totalPrice}}</p>
+    <div class="col col-11 col-md-3 ms-2 mt-2">
+      <p>{{totalPrice | currency: 'USD': 'symbol':'1.2-2'}}</p>
       <div class="btn btn-dark" (click)="onCheckOut()">Check out</div>
     </div>
   </div>

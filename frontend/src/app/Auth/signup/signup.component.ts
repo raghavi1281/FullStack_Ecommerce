@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../Services/auth.service';
+import { Router } from '@angular/router';
 
 
 
@@ -9,12 +10,13 @@ import { AuthService } from '../../Services/auth.service';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent {
+export class SignupComponent{
 
   signUpForm: FormGroup;
 
   constructor(private formBuilder : FormBuilder, 
-              private authService : AuthService) {
+              private authService : AuthService,
+              private router : Router) {
     this.signUpForm = this.formBuilder.group({
       name : ['', Validators.required],
       email : ['', [Validators.required, Validators.email]],
@@ -23,13 +25,13 @@ export class SignupComponent {
     }, { validators : this.passwordMatchValidator });
   }
 
-  passwordMatchValidator(formGroup : FormGroup) {
+  passwordMatchValidator(formGroup : FormGroup): { passwordMismatch: boolean; } | null {
     const password = formGroup.get('password')?.value;
     const confirmPassword = formGroup.get('confirmPassword')?.value;
     return password === confirmPassword ? null : {passwordMismatch : true};
   }
 
-  registerUser() {
+  registerUser() : void{
     const user = {
       name: this.signUpForm.get('name')?.value, 
       email: this.signUpForm.get('email')?.value,

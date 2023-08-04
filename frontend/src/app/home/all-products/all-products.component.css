@@ -1,0 +1,9 @@
+.banner{
+    height: 40vh;
+    width: 100vw;
+    background-image: url('../../../assets/banner.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    font-family: fantasy;
+}

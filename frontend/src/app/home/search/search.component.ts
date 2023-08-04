@@ -4,6 +4,7 @@ import { SearchService } from 'src/app/Services/search.service';
 import { Subscription } from 'rxjs';
 import { ProductsService} from 'src/app/Services/products.service';
 import { CartService } from 'src/app/Services/cart.service';
+import { productsResponse } from 'src/app/Models/response.model';
 
 @Component({
   selector: 'app-search',
@@ -11,7 +12,7 @@ import { CartService } from 'src/app/Services/cart.service';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent{
-  products: Array<Product> = [];
+  products: Array<productsResponse> = [];
   private searchSubcription: Subscription
   private filterSubcription: Subscription
 
@@ -28,16 +29,16 @@ export class SearchComponent{
 
   }
 
-  addToCart(product: Product){
+  addToCart(product: productsResponse) : void{
     this.cart.addToCart(product)
   }
 
-  fetchFilteredProducts(option: string){
+  fetchFilteredProducts(option: string) : void{
     this.filter.getProductsByCategory(option)
                 .subscribe((response) => this.products = response)
   }
 
-  fetchSearchedProducts(query: string){
+  fetchSearchedProducts(query: string) : void{
     console.log(query)
     this.filter.getProductsBySearch(query)
                 .subscribe((response) => this.products = response)

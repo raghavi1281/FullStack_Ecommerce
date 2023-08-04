@@ -3,7 +3,7 @@
       <a style="padding: 0%; margin: 0%; text-decoration: none;" routerLink="../../Home/product"[queryParams]="{productId: product._id }">  
       <div class="col m-1">
             <div class="card h-100 shadow" style="position: relative; border-color: white;">
-                <img src={{product.thumbnail}} class="card-img-top" alt="..." style="border-bottom: 1px solid rgb(201, 201, 201); background-color: whitesmoke; height: 200px; object-fit: scale-down; object-position: center;"> 
+                <img src={{product.thumbnail}} class="card-img-top" alt="..." onerror="this.src='../../../assets/dummy.png'"> 
                 <div class="card-body justify-content-between">
                         <figure>
                             <blockquote class="blockquote">

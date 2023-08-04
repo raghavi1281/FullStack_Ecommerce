@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Product } from '../Models/product.model';
 import { Observable } from 'rxjs';
+import { productsResponse } from '../Models/response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class CheckOutService {
 
   constructor(private http: HttpClient) { }
 
-  placeOrder(cart: {product: Product, quantity: number}[]): Observable<any> {
+  placeOrder(cart: {product: productsResponse, quantity: number}[]): Observable<any> {
     let cartList: {
       productID: number,
       price: number,

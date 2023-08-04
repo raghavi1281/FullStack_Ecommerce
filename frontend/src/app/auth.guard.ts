@@ -10,6 +10,9 @@ export class AuthGuard{
     constructor(private router: Router){}
 
     canActivate(): boolean | UrlTree {
+        if(!window.navigator.onLine){
+            this.router.navigate(['/offline'])
+        }
         if(localStorage.getItem('token'))
         {
             return true
@@ -20,6 +23,9 @@ export class AuthGuard{
     }
 
     canCheckAuth(): boolean | UrlTree {
+        if(!window.navigator.onLine){
+            this.router.navigate(['/offline'])
+        }
         if(localStorage.getItem('token'))
         {
             return this.router.parseUrl('/Home')

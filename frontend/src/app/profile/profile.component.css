@@ -1,0 +1,12 @@
+.navbar{
+    background-color: var(--third-color);
+}
+
+.bi-cart{
+    color: var(--primary-color);
+}
+
+.badge{
+    background-color: var(--primary-color);
+    color: (--forth-color);
+}
