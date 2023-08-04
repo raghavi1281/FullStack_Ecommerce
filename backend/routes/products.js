@@ -6,7 +6,7 @@ const router = express.Router();
 //get all product documents
 router.get('/', async(request, response) => {
 
-    const product = await Products.find();
+    const product = await Products.find({}, {title:1, brand:1, price:1, thumbnail:1});
     response.status(200).json(product);
     
 });

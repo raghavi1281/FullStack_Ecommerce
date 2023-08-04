@@ -1,6 +1,5 @@
 const express = require('express');
 const Users = require('../model/users')
-const bodyParser = require('body-parser')
 const jwt = require('jsonwebtoken')
 
 //Function to create JWT, signing user ID with secret key, no expiry
@@ -51,5 +50,6 @@ router.post('/signUp', async(request, response) => {
         response.status(400).json({error: error.message})
     }
 });
+
 
 module.exports = router;

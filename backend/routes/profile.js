@@ -9,8 +9,14 @@ router.use(authprotection)
 
 router.get('/', async(request, response) => {
     const id = request.user._id
-    const user = Users.findById(id)
-    response.json(user)
+    const user = await Users.findById(id)
+    const profile = {
+        name: user.name,
+        email: user.email,
+        cart: user.cart,
+        address: user.address
+    }
+    response.json(profile)
 })
 
 module.exports = router

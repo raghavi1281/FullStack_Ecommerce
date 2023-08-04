@@ -2,6 +2,8 @@ require('dotenv').config()
 
 const express = require('express')
 const mongoose = require('mongoose')
+const cors = require('cors')
+
 const authRoutes = require('./routes/auth.js')
 const profileRoute = require('./routes/profile.js')
 const cartRoutes = require('./routes/cart.js')
@@ -13,16 +15,17 @@ const app = express();
 
 //Application level middleware
 //setting response headers to enable CORS
-app.use((request,response,next) => {
-    response.setHeader("Access-Control-Allow-Origin", "*");  // any origin is allowed to access response
-    response.setHeader(
-        "Access-Control-Allow-Headers", 
-        "Origin, X-Requested-With, Content-Type, Accept"); 
-    response.setHeader(
-        "Access-Control-Allow-Methods", 
-        "GET, POST, PATCH, DELETE, OPTIONS");
-    next();
-})
+app.use(cors())
+// app.use((request,response,next) => {
+//     response.setHeader("Access-Control-Allow-Origin", "*");  // any origin is allowed to access response
+//     response.setHeader(
+//         "Access-Control-Allow-Headers", 
+//         "Origin, X-Requested-With, Content-Type, Accept"); 
+//     response.setHeader(
+//         "Access-Control-Allow-Methods", 
+//         "GET, POST, PATCH, DELETE, OPTIONS");
+//     next();
+// })
 
 //built in middleware express.json()
 app.use(express.json())

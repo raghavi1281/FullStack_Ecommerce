@@ -15,4 +15,10 @@ const orderSchema = new mongoose.Schema({
         date: Date
 });
 
+orderSchema.statics.checkOut = async function(userID, products) {
+    let orderDate = new Date()
+    const order =  await this.create({userID, products, date: orderDate})
+    return order
+}
+
 module.exports = mongoose.model('Orders', orderSchema);

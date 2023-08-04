@@ -17,6 +17,14 @@ const userSchema = new mongoose.Schema({
             productID: Number,//reference to product
             quantity: Number
         }
+    ],
+    address:[
+        {
+            houseNo: String,
+            building: String,
+            state: String,
+            pincode: Number
+        }
     ]
 });
 
